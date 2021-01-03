@@ -1,6 +1,14 @@
+const mysql = require("mysql");
 const inquirer = require("inquirer");
-const connection = require("connection");
 require("console.table");
+
+const connection = mysql.createConnection({
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: "JunieJune548!",
+    database: "employee_db"
+});
 
 const menu = () => {
     inquirer.prompt({
@@ -73,3 +81,10 @@ const viewEmployees = () => {
         menu()
     });
 }
+
+
+connection.connect((err) => {
+    if (err) throw err; 
+    console.log(`connected as id ${connection.threadId}\n`);
+    menu()
+});
