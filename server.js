@@ -8,19 +8,19 @@ const menu = () => {
         type:"list",
         message:"Please make a selection.",
         choices:[
-            'View departments',
-            'View roles', 
-            'View employees', 
-            'Add department',
-            'Add role', 
-            'Add employee', 
-            "exit"
+            'View Departments',
+            'View Roles', 
+            'View Employees', 
+            'Add Department',
+            'Add Role', 
+            'Add Employee', 
+            "Exit"
         ]
     })
     .then(({ menuOptions }) => {
         switch (menuOptions) {
             case 'View Departments':
-                viewDepartment()
+                viewDepartments()
                 break;
             case 'View Roles':
                 viewRoles()
@@ -44,9 +44,19 @@ const menu = () => {
     })
 }
 
-const viewDepartment = () => {
+const viewDepartments = () => {
     const query = 
       "SELECT * FROM department"
+      connection.query(query, (err, res) => {
+        if (err) throw err;
+        console.table(res)
+        menu()
+    });
+}
+
+const viewRoles = () => {
+    const query = 
+      "SELECT * FROM role"
       connection.query(query, (err, res) => {
         if (err) throw err;
         console.table(res)
