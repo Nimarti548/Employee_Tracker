@@ -51,7 +51,7 @@ const menu = async () => {
             case 'Add Role':
                 return addRole()
             case 'Add Employee':
-                return addEmployee()
+                return addEmployee() 
             default:
                 connection.end()
                 process.exit(0)
